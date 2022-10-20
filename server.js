@@ -58,6 +58,9 @@ app.get("/highGPA", (req,res) =>{
     })
 })
 
+app.get("/addStudent", (req,res) =>{
+    res.sendFile(__dirname + "/views/addStudent.html");
+})
 app.use((req, res) =>{
     res.status(404).send("<b>Error 404: Page not found.</b>");
 })
