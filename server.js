@@ -10,6 +10,7 @@ other source
 * Your app’s URL (from Cyclic) : https://shy-blue-kitten-ring.cyclic.app
 *
 *************************************************************************/ 
+const { json } = require("express");
 var express = require("express");
 var app = express();
 var dataPrep = require("./data_prep");
@@ -36,6 +37,16 @@ app.get("/allStudents", (req,res) =>{
     })
 })
 
+app.get("/cpa", (req,res) =>{
+    dataPrep.cpa().then((data) =>{
+        const cpaStud = data;
+        let resText = "<br>";
+        resText = JSON.stringify(cpaStud) + "<br>";
+        res.send(resText);
+    }).catch((err) =>{
+        res.send("Message ", err);
+    })
+})
 app.get("/highGPA", (req,res) =>{
     dataPrep.highGPA().then((data) =>{
         const highStudent = data;

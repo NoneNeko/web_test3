@@ -4,6 +4,7 @@ module.exports ={
     prep,
     allStudents,
     highGPA,
+    cpa
 }
 let students = [];
 
@@ -35,6 +36,27 @@ function allStudents(){
     })
 }
 
+function cpa(){
+    return new Promise((resolve,reject) =>{
+        let cpa, j = 0;
+        for(var i = 0; i<students.length; i++)
+        {
+            if(students[i].program == "CPA")
+            {
+                cpa[j] = students[i];
+                j++;
+            }
+        }
+        if(cpa.length == 0)
+        {
+            reject("No result returned!");
+        }
+        else{
+            resolve(cpa);
+        }
+
+    })
+}
 function highGPA(){
     return new Promise((resolve, reject) =>{
         let highest = students[0];
