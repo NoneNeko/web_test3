@@ -26,7 +26,7 @@ app.get("/", (req,res) => {
 });
 
 app.get("/allStudents", (req,res) =>{
-    dataPrep.cpa().then((data) =>{
+    dataPrep.allStudents().then((data) =>{
         const student = data;
         let resText = "<br>";
         resText = JSON.stringify(student) + "<br>";

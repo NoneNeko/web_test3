@@ -2,7 +2,7 @@ var fs = require("fs");
 
 module.exports ={
     prep,
-    cpa,
+    allStudents,
     highGPA,
 }
 let students = [];
@@ -23,7 +23,7 @@ function prep(){
 }
 
 
-function cpa(){
+function allStudents(){
     return new Promise((resolve, reject) =>{
         if(students.length == 0)
         {
