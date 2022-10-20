@@ -25,7 +25,7 @@ app.get("/", (req,res) => {
     res.sendFile(__dirname + "/views/home.html");
 });
 
-app.get("/GPA", (req,res) =>{
+app.get("/allStudents", (req,res) =>{
     dataPrep.cpa().then((data) =>{
         const student = data;
         let resText = "<br>";
