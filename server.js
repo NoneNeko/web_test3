@@ -74,6 +74,11 @@ app.post("/addStudent", (req,res) =>{
         res.send(resText);
 })
 
+app.get('/student/:studId', (req,res) =>{
+    console.log(request.params);
+    res.json(request.params);
+})
+
 app.use((req, res) =>{
     res.status(404).send("<b>Error 404: Page not found.</b>");
 })

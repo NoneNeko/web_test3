@@ -5,7 +5,8 @@ module.exports ={
     allStudents,
     highGPA,
     cpa,
-    addStudent
+    addStudent,
+    getStudent
 }
 let students = [];
 
@@ -82,4 +83,26 @@ function highGPA(){
         }
        
     });
+}
+
+function getStudent(studNUM)
+{
+    return new Promise((resolve,reject) =>{
+        let desired = [];
+        for (var i = 0; i< students.length; i++)
+        {
+            if (students[i].studId == studNUM)
+            {
+                desired = students[i];
+            }
+        }
+        if (desired.length == 0)
+        {
+            reject("No result returned!");
+        }
+        else{
+            resolve(desired);
+        }
+    })
+   
 }
