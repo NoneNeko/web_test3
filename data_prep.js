@@ -39,13 +39,7 @@ function allStudents(){
 
 function addStudent(student){
     return new Promise((resolve, reject) =>{
-        if(student.length == 0)
-        {
-            reject("No result returned!");
-        }
-        else{
             students[students.length + 1] = student;
-        }
     })
 }
 function cpa(){
