@@ -64,8 +64,9 @@ app.get("/addStudent", (req,res) =>{
 })
 
 app.post("/addStudent", (req,res) =>{
-        const addedStudent = res.data;
+        const addedStudent = req.body;
         dataPrep.addStudent(addedStudent);
+        JSON.stringify(req.body);
         let resText = "<p>Student ID: "+ addedStudent.studID + "</p> <br>" + 
         "<p> Student name:"+ addedStudent.name +"</p> <br>"+
         "<p> Program:"+ addedStudent.program + "</p> <br>" +
