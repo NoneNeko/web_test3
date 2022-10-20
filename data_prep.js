@@ -4,7 +4,8 @@ module.exports ={
     prep,
     allStudents,
     highGPA,
-    cpa
+    cpa,
+    addStudent
 }
 let students = [];
 
@@ -36,6 +37,18 @@ function allStudents(){
     })
 }
 
+function addStudent(student){
+    return new Promise((resolve, reject) =>{
+        if(student.length == 0)
+        {
+            reject("No result returned!");
+        }
+        else{
+            students[student.length + 1] = student;
+            resolve(students);
+        }
+    })
+}
 function cpa(){
     return new Promise((resolve,reject) =>{
         let cpa = [], j = 0;

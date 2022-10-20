@@ -65,6 +65,21 @@ app.use((req, res) =>{
     res.status(404).send("<b>Error 404: Page not found.</b>");
 })
 
+app.post("/addStudent", (req,res) =>{
+    dataPrep.addStudent().then((data) =>{
+        const addedStudent = data;
+        let resText = "<p>Student ID: "+ addedStudent.studID + "</p> <br>" + 
+        "<p> Student name:"+ addedStudent.name +"</p> <br>"+
+        "<p> Program:"+ addedStudent.program + "</p> <br>" +
+        "<p>"+ addedStudent.gpa + "</p> <br>";
+        res.send(resText);
+    }).catch((err) =>{
+        res.send("Message: ", err);
+    })
+})
+   
+
+
 dataPrep.prep().then(() =>{
     app.listen(HTTP_PORT, onHttpStart);
 }).catch((err) =>{
