@@ -64,16 +64,13 @@ app.get("/addStudent", (req,res) =>{
 })
 
 app.post("/addStudent", (req,res) =>{
-    dataPrep.addStudent().then((data) =>{
-        const addedStudent = data;
+        const addedStudent = res.data;
+        dataPrep.addStudent(addedStudent);
         let resText = "<p>Student ID: "+ addedStudent.studID + "</p> <br>" + 
         "<p> Student name:"+ addedStudent.name +"</p> <br>"+
         "<p> Program:"+ addedStudent.program + "</p> <br>" +
         "<p>"+ addedStudent.gpa + "</p> <br>";
         res.send(resText);
-    }).catch((err) =>{
-        res.send("Message: ", err);
-    })
 })
 
 app.use((req, res) =>{

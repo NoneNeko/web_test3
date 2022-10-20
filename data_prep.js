@@ -44,8 +44,7 @@ function addStudent(student){
             reject("No result returned!");
         }
         else{
-            students[student.length + 1] = student;
-            resolve(student);
+            students[students.length + 1] = student;
         }
     })
 }
