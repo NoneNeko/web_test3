@@ -13,6 +13,15 @@
     <form name="addStudent" method ="post"
         enctype="multipart/form-data"
         action = "/addStudents">
-        <p>Name: <input type = "text" name = "name"> </p>
+        <p>Student Id: <input type = "number" name = "studID"> </p>
+        <p>Student Name: <input type ="text" name = "studName"></p>
+        <p>Program: <select name ="program">
+            <option value ="BSD">BSD</option>
+            <option value = "CPA">CPA</option>
+            <option value = "DSA">DSA</option>
+        </select>
+    </p>
+        <p>GPA: <input type = "number" name = "studGPA"></p>
+    
     </form>
   </body>
