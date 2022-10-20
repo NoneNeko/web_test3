@@ -38,7 +38,7 @@ function allStudents(){
 
 function cpa(){
     return new Promise((resolve,reject) =>{
-        let cpa, j = 0;
+        let cpa = [], j = 0;
         for(var i = 0; i<students.length; i++)
         {
             if(students[i].program == "CPA")
