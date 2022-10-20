@@ -45,7 +45,7 @@ function addStudent(student){
         }
         else{
             students[student.length + 1] = student;
-            resolve(students);
+            resolve(student);
         }
     })
 }
