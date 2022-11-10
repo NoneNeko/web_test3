@@ -87,7 +87,7 @@ app.post("/addStudent", (req, res)=>{
 
         res.send(txt);
 
-        //res.redirect("/allStudents");
+        res.redirect("/allStudents");
 
 
 

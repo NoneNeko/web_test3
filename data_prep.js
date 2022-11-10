@@ -38,9 +38,13 @@ function allStudents(){
     })
 }
 
-function addStudent(student){
+function addStudent(stud){
     return new Promise((resolve, reject) =>{
-            students[students.length + 1] = student;
+        stud.studId = students.length+1;
+
+        students.push(stud);
+
+        resolve();
     })
 }
 function cpa(){
