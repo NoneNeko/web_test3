@@ -63,21 +63,70 @@ app.get("/addStudent", (req,res) =>{
     res.sendFile(__dirname + "/views/addStudent.html");
 })
 
-app.post("/addStudent", (req,res) =>{
-        const addedStudent = req.body;
-        dataPrep.addStudent(addedStudent);
-        JSON.stringify(req.body);
-        let resText = "<p>Student ID: "+ addedStudent.studId + "</p> <br>" + 
-        "<p> Student name:"+ addedStudent.name +"</p> <br>"+
-        "<p> Program:"+ addedStudent.program + "</p> <br>" +
-        "<p>"+ addedStudent.gpa + "</p> <br>";
-        res.send(resText);
-})
+app.post("/addStudent", (req, res)=>{
 
-app.get('/student/:studId', (req,res) =>{
-    console.log(request.params);
-    res.json(request.params);
-})
+    dataPrep.addStudent(req.body).then(()=>{
+
+        var data = req.body;
+
+        var txt =  ` <h2 style="color:red;"> The New Student Information  </h2>
+
+        <p> Student id: ${data.studId}</p>
+
+         <p> Student name: ${data.name} </p>
+
+        <p> Program: ${data.program} </p>
+
+        <p> GPA: ${data.gpa} </p>
+
+        <a href="/allStudents"> All Students </a> <br>
+
+        <a href="/"> Go Home </a>
+
+        `;
+
+        res.send(txt);
+
+        //res.redirect("/allStudents");
+
+
+
+    }).catch((reason)=>res.json({message:reason}));
+
+});
+
+app.get("/student/:studId",(req, res)=>{
+
+    dataPrep.getStudent(req.params.studId).then((data)=>{
+
+        var txt = `
+
+        <h2 style="color:red;"> This Student Information  </h2>
+
+        <p> Student id: ${data.studId}</p>
+
+        <p> Student name: ${data.name} </p>
+
+        <p> Program: ${data.program} </p>
+
+        <p> GPA: ${data.gpa} </p>
+
+        <a href="/allStudents"> Show All Students </a> <br>
+
+        <a href="/"> Go Home </a>
+
+        `;
+
+        res.send(txt);
+
+       // res.json(data);
+
+       // {"studId":3,"name":"name3","program":"BSD","gpa":3.3}
+
+    }).catch((reason)=>res.json({message:reason}));
+
+});
+
 
 app.use((req, res) =>{
     res.status(404).send("<b>Error 404: Page not found.</b>");
