@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <!-- Latest compiled and minified Bootstrap 3.3.7 CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <title>Home</title>
+  </head>
+  <body>
+    <div>
+        <ul>
+          {{#navLink "/allStudents"}}All Students{{/navLink}}
+          {{#navLink "/cpa"}}CPA Students{{/navLink}}
+          {{#navLink "/addStudent"}}Add a New Student{{/navLink}}
+            {{!--
+            <li><a href ="/allStudents">All Students</a></li>
+            <li><a href ="/cpa">CPA Students</a></li>
+            <li><a href ="/addStudent">Add a New Student</a></li> --}}
+            <li><p>Note: Locate specific student by student ID
+              <br>
+              http://localhost:8080/student/3
+            </p></li>
+            {{#navLink "/highGPA"}}Highest GPA{{/navLink}}
+            {{#navLink "/"}}Home{{/navLink}}
+            {{!-- <li><a href ="/highGPA">Highest GPA</a></li>
+            <li><a href ="/">Home</a></li> --}}
+        </ul>
+    </div>
+    <hr>
+    {{{body}}}
+    <hr>
+       <h2>Declaration (text size in heading 2):</h2>
+    <p>I acknowledge the College's academic integrity policy - and my own integrity - reman in effect whether my work is
+        done remotely or onsite. Any test or assignment is an act of trust between me and my instructor, and especially with
+        my classmates... even when no one is watching. I declare I will not break that trust.
+    </p>
+    <p>Name: <b>Dai Dung Lam</b></p> 
+    <p>Student Number: <b>137 632 196</b></p>
+
+    
+  </body>
+</html>
