@@ -71,25 +71,25 @@ app.post("/addStudent", (req, res)=>{
 
     dataPrep.addStudent(req.body).then(()=>{
 
-        // var data = req.body;
+        var data = req.body;
 
-        // var txt =  ` <h2 style="color:red;"> The New Student Information  </h2>
+        var txt =  ` <h2 style="color:red;"> The New Student Information  </h2>
 
-        // <p> Student id: ${data.studId}</p>
+        <p> Student id: ${data.studId}</p>
 
-        //  <p> Student name: ${data.name} </p>
+         <p> Student name: ${data.name} </p>
 
-        // <p> Program: ${data.program} </p>
+        <p> Program: ${data.program} </p>
 
-        // <p> GPA: ${data.gpa} </p>
+        <p> GPA: ${data.gpa} </p>
 
-        // <a href="/allStudents"> All Students </a> <br>
+        <a href="/allStudents"> All Students </a> <br>
 
-        // <a href="/"> Go Home </a>
+        <a href="/"> Go Home </a>
 
-        // `;
+        `;
 
-        // res.send(txt);
+        res.send(txt);
 
         res.redirect("/allStudents");
 
