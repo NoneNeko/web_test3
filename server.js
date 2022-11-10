@@ -16,6 +16,10 @@ var app = express();
 var dataPrep = require("./data_prep");
 app.use(express.static('public'));
 
+app.use(express.json());
+
+app.use(express.urlencoded({extended: true}));
+
 var HTTP_PORT = process.env.Port || 8080;
 
 function onHttpStart(){
@@ -87,7 +91,7 @@ app.post("/addStudent", (req, res)=>{
 
         res.send(txt);
 
-        res.redirect("/allStudents");
+        //res.redirect("/allStudents");
 
 
 
