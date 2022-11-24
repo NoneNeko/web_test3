@@ -1,5 +1,7 @@
 var fs = require("fs");
 
+const Sequelize = require("sequelize");
+
 module.exports ={
     prep,
     allStudents,
@@ -110,3 +112,23 @@ function getStudent(studNUM)
     })
    
 }
+
+var sequelize = new Sequelize("jybsjjyv", "jybsjjyv","LKmJhJixYNx4TKEXMH1HpanhKIp0s1jN",
+{
+    host:"mouse.db.elephantsql.com (mouse-01)",
+    dialect: "postgres",
+    port: 5432,
+    dialectOptions: {
+        ssl: {
+            require:true,
+            rejectUnauthorized: false
+        }
+    },
+    query: {raw:true}
+})
+
+sequelize.authenticate().then(()=> console.log("connection success!"))
+.catch((e)=>{
+    console.log("connection failed!");
+    console.log(e);
+})
