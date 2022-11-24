@@ -1,4 +1,6 @@
 var fs = require("fs");
+const { userInfo } = require("os");
+
 
 const Sequelize = require("sequelize");
 
@@ -20,11 +22,13 @@ function prep(){
                 reject("Unable to read file.");
             }
             else{
-                students=JSON.parse(data);
+               sequelize.sync(data).then(()=>{
                 resolve();
+               }).catch((e)=>console.log(e))
             }
         });
     });
+    
 }
 
 
@@ -41,52 +45,42 @@ function allStudents(){
 }
 
 function addStudent(stud){
-    return new Promise((resolve, reject) =>{
-        stud.studId = students.length+1;
-
-        students.push(stud);
-
-        resolve();
-    })
+    sequelize.sync().then(()=>{
+        student.create({
+            name: stud.name,
+            program: stud.program,
+            gpa: stud.gpa
+        })
+    }).catch(() => reject("unable to add the student"))
 }
 function cpa(){
     return new Promise((resolve,reject) =>{
-        let cpa = [], j = 0;
-        for(var i = 0; i<students.length; i++)
+        sequelize.sync().then(() =>
         {
-            if(students[i].program == "CPA")
-            {
-                cpa[j] = students[i];
-                j++;
-            }
-        }
-        if(cpa.length == 0)
-        {
-            reject("No result returned!");
-        }
-        else{
-            resolve(cpa);
-        }
+         student.findAll({
+             attributes:['studId', 'name', 'program', 'gpa'],
+             where: {program: "CPA"}
+         }).then((data)=>{
+             resolve(data);
+         }).catch(()=>{
+             reject("no result returned");
+         })
+        })
 
     })
 }
 function highGPA(){
     return new Promise((resolve, reject) =>{
-        let highest = students[0];
-        for(var i = 0; i< students.length; i++ )
-        {
-            if (highest.gpa < students[i].gpa)
-            {
-                highest = students[i];
-            }
-        }
-        if (highest.length == 0)
-        {
-            reject("No result returned!");
-        }
-        else{
-            resolve(highest);
-        }
+       sequelize.sync.then(() =>{
+        student.findAll({
+            attributes:['studId', 'name', 'program', 'gpa'],
+            where: {gpa: 4}
+        }).then((data) =>{
+            resolve(data);
+        }).catch(()=>{
+            reject("no result returned");
+        })
+       })
        
     });
 }
@@ -115,7 +109,7 @@ function getStudent(studNUM)
 
 var sequelize = new Sequelize("jybsjjyv", "jybsjjyv","LKmJhJixYNx4TKEXMH1HpanhKIp0s1jN",
 {
-    host:"mouse.db.elephantsql.com (mouse-01)",
+    host:"mouse.db.elephantsql.com",
     dialect: "postgres",
     port: 5432,
     dialectOptions: {
@@ -132,3 +126,17 @@ sequelize.authenticate().then(()=> console.log("connection success!"))
     console.log("connection failed!");
     console.log(e);
 })
+
+var student = sequelize.define("Student", {
+    StudId :{
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    name : Sequelize.STRING,
+    program: Sequelize.STRING,
+    gpa : Sequelize.FLOAT
+}, {
+    createdAt: false,
+    updatedAt: false
+});
