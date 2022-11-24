@@ -1,6 +1,7 @@
 
 
  <h2 style="color:red"> The New Student Information  </h2>
+{{#each student}}
 
  <p> Student id: {{student.studId}} </p>
 
@@ -9,3 +10,5 @@
 <p> Program: {{student.program}} </p> 
 
 <p> GPA: {{student.gpa}}  </p> 
+
+{{/each}}
